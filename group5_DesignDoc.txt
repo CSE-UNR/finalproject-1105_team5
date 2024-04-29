@@ -1,0 +1,75 @@
+					Design Document
+				Saurabh Chawla and Lukas Farias
+					 “Erinstagram!”
+
+Data:
+• Choice: integer – Based on the option that the user selects from the menu.
+• File/Picture: 2D Array – using values from a file.
+• Crop: size – allows edits to the size of the array based on the users input
+• Save: array of ints – saved in file
+
+Program:
+This program will allow a user to select from a menu in which will allow them to display an
+image using the values of a specified file. In this menu, the image that is selected to load can be
+edited by the user, allowing them to edit the values, crop the size, dim and brighten the image, as
+well as rotate the image. After the user has been satisfied with editing their image, using the
+options from the menu, they will have the option to save new image either into the existing file
+that the image is from or they are able to choose a different file by entering in the file name. after
+this, the program will loop back to the beginning menu until the user decides to quit/exit the
+program.
+
+Functions:
+main()
+Data: Array for image selected by user. Integer Variables for menu options.
+Functionality: Loads the menu to the user. Displays image from users file selection. Displays
+any edits made by the user by displaying the updated image. In a loop, displays the editing menu,
+along with the option to save to file. Checks for exit by the user.
+
+loadImage()
+Input Parameters: File pointer, char 2D Array,
+Returned Output: none
+Functionality: This function will loop display a menu, allowing the user to input the filename of
+their image. This then allows the program to initialize the specified file. This will convert or plug
+in the values from the file into our 2D Array.
+
+displayImage()
+Input Parameters: File pointer, char 2D Array, int size
+Returned Output: None
+Functionality: This function initializes the row and column of our 2D array. From this, it prints
+“image” followed by the print of the array using the iteration of the 2D array.
+
+editImage()
+Input Parameters: char 2D Array, int size
+Returned Output: None
+Functionality: This function loop displays an edit menu in which allows the user to crop, dim,
+brighten, save, return to the main menu, or quit their image. The loop will continue as long as
+user does not opt to return to the main menu or quit out of the program. Any other option will
+then ask them for needed values to edit their image, then loop back to see if the user would like
+to continue editing or save their file.
+
+cropImage()
+Input Parameters: char 2D Array, int size, file pointer
+Returned Output: None
+Functionality: This function will ask the user to specify which coordinates they would like to
+crop in or out. We'll ask for a top left coordinate and a bottom right coordinate. Based off of which coordinates the user inputs, it will update the size of the image by creatating a buffer array then putting the new values in by replacing the original array.Then it will ask if the user would like to display their cropped image.
+
+dimImage()
+Input Parameters: char 2D Array, int size, file pointer
+Returned Output: None
+Functionality: This function will prompt the user and ask them how much they would like to
+dim their image on a scale of -1 to -4. Based off of what the user inputs, it will update each pixel
+(character value) of the image. This will then display the updated image.
+
+brightenImage()
+Input Parameters: char 2D Array, int size, file pointer
+Returned Output: None
+Functionality: This function will prompt the user and ask them how much they would like to
+brighten their image on a scale of 1 to 4. Based off what the user inputs, it will update each pixel
+(character value) of the image. This will then display the updated image.
+
+rotateImage_90()
+Input Parameters: char 2D Array, int size, file pointer
+Returned Output: None
+Functionality: creates a new empty image, then switches the values for rows into columns and
+columns into rows. Iterates the values from the users file putting each value into its new position
+on the array. Displays new image. 
