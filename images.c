@@ -7,10 +7,11 @@
 #define VERT_CAP 10
 #define HORI_CAP 10
 
+void brightnessValues()
 void loadImage()
 void displayImage()
 void editImage()
-void crop image()
+void cropimage()
 void dimImage()
 void brightenImage()
 void rotateImage_90()
