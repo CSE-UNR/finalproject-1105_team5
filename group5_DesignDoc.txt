@@ -5,12 +5,11 @@
 Data:
 • Choice: integer – Based on the option that the user selects from the menu.
 • File/Picture: 2D Array – using values from a file.
-• Crop: size – allows edits to the size of the array based on the users input
+• Crop: size – height and width variables are saved upon load. they may change based on the crop coordinates and help bound the for loops when cropping. 
 • Save: array of ints – saved in file
 
 Program:
-This program will allow a user to select from a menu in which will allow them to display an
-image using the values of a specified file. In this menu, the image that is selected to load can be
+This program will allow a user to select from a menu in which will allow them to choose an "image file" to load into the program. The user had the option to display the current image. In this menu, the image that is selected to load can also be
 edited by the user, allowing them to edit the values, crop the size, dim and brighten the image, as
 well as rotate the image. After the user has been satisfied with editing their image, using the
 options from the menu, they will have the option to save new image either into the existing file
@@ -21,37 +20,36 @@ program.
 Functions:
 main()
 Data: Array for image selected by user. Integer Variables for menu options.
-Functionality: Loads the menu to the user. Displays image from users file selection. Displays
-any edits made by the user by displaying the updated image. In a loop, displays the editing menu,
-along with the option to save to file. Checks for exit by the user.
+Functionality: Loads the menu to the user. Calls display, edit and load functions if user chooses. Checks for exit by the user.
 
 loadImage()
-Input Parameters: File pointer, char 2D Array,
+Input Parameters: Height and width file pointer, int 2D Array,
 Returned Output: none
-Functionality: This function will loop display a menu, allowing the user to input the filename of
-their image. This then allows the program to initialize the specified file. This will convert or plug
-in the values from the file into our 2D Array.
+Functionality: This function will prompt the user to input the filename of
+their image. The program will attempt to open and read the specified file. If successful, it will plug in
+the brightness values from the file into our 2D Array and find the height and width of the image.
 
 displayImage()
-Input Parameters: File pointer, char 2D Array, int size
+Input Parameters: int 2D Array, height and width
 Returned Output: None
-Functionality: This function initializes the row and column of our 2D array. From this, it prints
-“image” followed by the print of the array using the iteration of the 2D array.
+Functionality: This function will render the image. It simply interates through the current image array 
+using the height and width values to bound the loops, and prints the 
+corresponding image character based on the brighness value in each array spot. 
 
 editImage()
 Input Parameters: char 2D Array, int size
 Returned Output: None
-Functionality: This function loop displays an edit menu in which allows the user to crop, dim,
-brighten, save, return to the main menu, or quit their image. The loop will continue as long as
-user does not opt to return to the main menu or quit out of the program. Any other option will
-then ask them for needed values to edit their image, then loop back to see if the user would like
-to continue editing or save their file.
+Functionality: This function displays an edit menu with options to crop, dim,
+brighten or go back to main menu. This function will call specific editing functions based on the user's choice.
+After editing, the new image will be displayed and the user eill be prompted to save the new image to file or to replace the current image. 
 
 cropImage()
 Input Parameters: char 2D Array, int size, file pointer
 Returned Output: None
 Functionality: This function will ask the user to specify which coordinates they would like to
-crop in or out. We'll ask for a top left coordinate and a bottom right coordinate. Based off of which coordinates the user inputs, it will update the size of the image by creatating a buffer array then putting the new values in by replacing the original array.Then it will ask if the user would like to display their cropped image.
+crop in or out. We'll ask for a top left coordinate and a bottom right coordinate. 
+Based off of which coordinates the user inputs, it will update the height and width of the image based on these values.
+It will crop by creating a buffer array then putting the new values by copying over the current image values starting at the top left coordinate using new height and width values to bound the loops. Then it will ask if the user would like to display their cropped image.
 
 dimImage()
 Input Parameters: char 2D Array, int size, file pointer
