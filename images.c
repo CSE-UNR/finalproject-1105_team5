@@ -4,16 +4,23 @@
 
 #include <stdio.h>
 
-#define VERT_CAP 10
-#define HORI_CAP 10
+#define MAX_ROWS 500
+#define MAX_COLS 500
 
-void brightnessValues()
-void loadImage()
-void displayImage()
-void editImage()
-void cropimage()
-void dimImage()
-void brightenImage()
-void rotateImage_90()
+void loadImage(FILE* fpLOAD, int currentImage[][MAX_COLS], int* height, int* width);
+void displayImage(int currentImage[][MAX_COLS], int height, int width);
+void editImage(FILE* fpWRITE, int currentImage[][MAX_COLS], int height, int width);
+void cropimage(int currentImage[][MAX_COLS], int newImage[][MAX_COLS], int height, int width);
+void dimImage(int currentImage[][MAX_COLS], int newImage[][MAX_COLS], int height, int width);
+void brightenImage(int currentImage[][MAX_COLS], int newImage[][MAX_COLS], int height, int width);
+void rotateImage_90(int currentImage[][MAX_COLS], int newImage[][MAX_COLS], int height, int width);
 
 int main(){
+  FILE *fpIN, *fpOUT;
+  int currentImage[MAX_ROWS][MAX_COLS], height, width, choice;
+
+  
+  
+
+  
+}
