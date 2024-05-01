@@ -9,7 +9,8 @@ Data:
 • Save: array of ints – saved in file
 
 Program:
-This program will allow a user to select from a menu in which will allow them to choose an "image file" to load into the program. The user had the option to display the current image. In this menu, the image that is selected to load can also be
+This program will allow a user to select from a menu in which will allow them to choose an "image file" to load into the program. The user had the option to display the
+current image. In this menu, the image that is selected to load can also be
 edited by the user, allowing them to edit the values, crop the size, dim and brighten the image, as
 well as rotate the image. After the user has been satisfied with editing their image, using the
 options from the menu, they will have the option to save new image either into the existing file
@@ -23,51 +24,49 @@ Data: Array for image selected by user. Integer Variables for menu options.
 Functionality: Loads the menu to the user. Calls display, edit and load functions if user chooses. Checks for exit by the user.
 
 loadImage()
-Input Parameters: Height and width file pointer, int 2D Array,
+Input Parameters: Height and width file pointer, current image array,
 Returned Output: none
 Functionality: This function will prompt the user to input the filename of
 their image. The program will attempt to open and read the specified file. If successful, it will plug in
 the brightness values from the file into our 2D Array and find the height and width of the image.
 
 displayImage()
-Input Parameters: int 2D Array, height and width
+Input Parameters: current image array, height and width
 Returned Output: None
 Functionality: This function will render the image. It simply interates through the current image array 
 using the height and width values to bound the loops, and prints the 
 corresponding image character based on the brighness value in each array spot. 
 
 editImage()
-Input Parameters: char 2D Array, int size
+Input Parameters: current image array, new image array, height and width pointers
 Returned Output: None
 Functionality: This function displays an edit menu with options to crop, dim,
 brighten or go back to main menu. This function will call specific editing functions based on the user's choice.
-After editing, the new image will be displayed and the user eill be prompted to save the new image to file or to replace the current image. 
+After editing, the new image, passed in by the specific editing function via new image array, will be displayed, and the user will be prompted to save the new image to file. 
 
 cropImage()
-Input Parameters: char 2D Array, int size, file pointer
+Input Parameters: current image array, new image array, height and width
 Returned Output: None
 Functionality: This function will ask the user to specify which coordinates they would like to
 crop in or out. We'll ask for a top left coordinate and a bottom right coordinate. 
-Based off of which coordinates the user inputs, it will update the height and width of the image based on these values.
-It will crop by creating a buffer array then putting the new values by copying over the current image values starting at the top left coordinate using new height and width values to bound the loops. Then it will ask if the user would like to display their cropped image.
+Based off of which coordinates the user inputs, it will update the height and width variables.
+It will crop by writing to the new image array, copying over the current image values starting at the top left coordinate using new height and width values to bound the 
+loops.
 
 dimImage()
-Input Parameters: char 2D Array, int size, file pointer
+Input Parameters: current image array, new image array, height and width
 Returned Output: None
 Functionality: This function will prompt the user and ask them how much they would like to
-dim their image on a scale of -1 to -4. Based off of what the user inputs, it will update each pixel
-(character value) of the image. This will then display the updated image.
+dim their image on a scale of -1 to -4. Based off of what the user inputs, it will write updated brightness values to the new image array.
 
 brightenImage()
-Input Parameters: char 2D Array, int size, file pointer
+Input Parameters: current image array, new image array, height and width
 Returned Output: None
 Functionality: This function will prompt the user and ask them how much they would like to
-brighten their image on a scale of 1 to 4. Based off what the user inputs, it will update each pixel
-(character value) of the image. This will then display the updated image.
+dim their image on a scale of +1 to +4. Based off of what the user inputs, it will write updated brightness values to the new image array.
 
 rotateImage_90()
-Input Parameters: char 2D Array, int size, file pointer
+Input Parameters: current image array, new image array, height and width
 Returned Output: None
-Functionality: creates a new empty image, then switches the values for rows into columns and
-columns into rows. Iterates the values from the users file putting each value into its new position
-on the array. Displays new image. 
+Functionality: prompts user for what direction to rotate. Writes to the new image array placing column values in rows and vice versa. Based on the specified rotation 
+direction the column values will be written starting at the end or beginning of each row. 
