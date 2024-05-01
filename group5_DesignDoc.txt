@@ -24,7 +24,7 @@ Data: Array for image selected by user. Integer Variables for menu options.
 Functionality: Loads the menu to the user. Calls display, edit and load functions if user chooses. Checks for exit by the user.
 
 loadImage()
-Input Parameters: Height and width file pointer, current image array,
+Input Parameters: FILE pointer, Height and width file pointer, current image array,
 Returned Output: none
 Functionality: This function will prompt the user to input the filename of
 their image. The program will attempt to open and read the specified file. If successful, it will plug in
@@ -40,16 +40,16 @@ corresponding image character based on the brighness value in each array spot.
 editImage()
 Input Parameters: current image array, new image array, height and width pointers
 Returned Output: None
-Functionality: This function displays an edit menu with options to crop, dim,
+Functionality: Initialize newImage 2d array. This function displays an edit menu with options to crop, dim,
 brighten or go back to main menu. This function will call specific editing functions based on the user's choice.
 After editing, the new image, passed in by the specific editing function via new image array, will be displayed, and the user will be prompted to save the new image to file. 
 
 cropImage()
 Input Parameters: current image array, new image array, height and width
 Returned Output: None
-Functionality: This function will ask the user to specify which coordinates they would like to
-crop in or out. We'll ask for a top left coordinate and a bottom right coordinate. 
-Based off of which coordinates the user inputs, it will update the height and width variables.
+Functionality: This function will display the current image with coordinates around it and ask the user to specify which coordinates they would like to
+crop in. We'll ask for a top left coordinate and a bottom right coordinate. 
+Based off of which coordinates the user inputs, it will initialize new height and width variables based on the coordiates.
 It will crop by writing to the new image array, copying over the current image values starting at the top left coordinate using new height and width values to bound the 
 loops.
 
