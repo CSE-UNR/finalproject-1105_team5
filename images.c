@@ -9,14 +9,15 @@
 #define MAX_COLS 500
 #define FILE_NAME_MAX 100
 
-int loadImage(FILE* fp, int img[][MAX_COLS], int* rowsPtr, int* colsPtr);
+int loadImage(FILE* fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* colsPtr);
 void getCols(FILE* fp, int* colsPtr);
 void displayImage(int img[][MAX_COLS], int rows, int cols);
-void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols);
+/*void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols);
 void cropimage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void brightenImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
-void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
+void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);*/
+
 
 int main(){
   FILE *fpIN, *fpOUT;
@@ -29,41 +30,9 @@ int main(){
   return 0;
 }
 
-void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
-  int editMenuChoice, rowsNew, colsNew, newImage[MAX_ROWS][MAX_COLS];
-  char yn, newImageFileName[FILE_NAME_MAX];
-  bool editExitBool = 0;
 
-  printf("Enter your choice!\n1. crop\n2. brighten\n3. dim\n0. go back to main menu\n");
-//I haven't looked at the example exec. yet so we can put better menu prompts in later
-  scanf("%d", &editMenuChocie);
 
-  switch (editMenuChoice){
-    case 1: cropImage(img, newImage, rows, cols, &rowsNew, &colsNew);
-      break;
-    case 2: brightenImage(img, newImage, rows, cols);
-      break;
-    case 3: dimImage(img, newImage, rows, cols);
-      break;
-    case 0: editExitBool = 1;
-      break;
-  }    
-  if (editExitBool == 0){
-    printf("\nHere is your edited image:\n\n");
-    displayImage(newImage, rowsNew, colsNew);
-    printf("\nWould you like to save this image to a file? (y/n)\n");
-    scanf(" %c", yn);
-    switch (yn){
-      case 'Y':
-      case 'y': //this is where we'd save the image to file :) 
-      case 'n':
-      case 'N':
-      default:
-  }
-}
-
-int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr,
-              int* colsPtr) {
+int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* colsPtr){
 
   printf("What is the name of the image file: ");
   fgets(fname, FILE_NAME_MAX, stdin);
@@ -106,7 +75,7 @@ int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr,
   return 1;
 }
 
-void getCols(FILE *fp, int* colsPtr) {
+void getCols(FILE *fp, int* colsPtr){
   char temp = 'a';
   while (temp != '\n') {
     fscanf(fp, "%c", &temp);
@@ -143,4 +112,37 @@ void displayImage(int img[][MAX_COLS], int rows, int cols){
   } 
 }
 
+/*void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
+  int editMenuChoice, rowsNew, colsNew, newImage[MAX_ROWS][MAX_COLS];
+  char yn, newImageFileName[FILE_NAME_MAX];
+  bool editExitBool = 0;
+
+  printf("Enter your choice!\n1. crop\n2. brighten\n3. dim\n0. go back to main menu\n");
+//I haven't looked at the example exec. yet so we can put better menu prompts in later
+  scanf("%d", &editMenuChoice);
+
+  switch (editMenuChoice){
+    case 1: cropImage(img, newImage, rows, cols, &rowsNew, &colsNew);
+      break;
+    case 2: brightenImage(img, newImage, rows, cols);
+      break;
+    case 3: dimImage(img, newImage, rows, cols);
+      break;
+    case 0: editExitBool = 1;
+      break;
+  }    
+  if (editExitBool == 0){
+    printf("\nHere is your edited image:\n\n");
+    displayImage(newImage, rowsNew, colsNew);
+    printf("\nWould you like to save this image to a file? (y/n)\n");
+    scanf(" %c", yn);
+    switch (yn){
+      case 'Y':
+      case 'y': //this is where we'd save the image to file :) 
+      case 'n':
+      case 'N':
+      default: ;
+    }
+  }
+}*/
 
