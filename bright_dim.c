@@ -13,7 +13,7 @@ int main(){
 int image[MAX_ROWS][MAX_COLS];
 int rows = 10, cols = 10;
 
-for(int i = 0; i < rows; i++){
+	for(int i = 0; i < rows; i++){
 	    for(int j = 0; j < cols; j++){
     		switch (j<5){
 	   		 case 1: 
@@ -27,11 +27,25 @@ for(int i = 0; i < rows; i++){
                 }else image[i][[j] = 1;
                 break:
             }
-        } 
+        }
+    }
+    brightenImage(image, rows, cols);
+	
+	
+	return 0;
+}
+
+void brighten_dimImage(int img[][MAX_COLS], int rows, int cols){
+	int x = 0;
+    printf("brighten or dim by how much? ");
+    scanf("%d", x);
+    
+    
+    }
+    
+    for(int i = 0; i < rows; i++){
+	    for(int j = 0; j < cols; j++){
 }
 
 
 
-
-return 0;
-}
