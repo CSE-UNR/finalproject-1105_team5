@@ -8,29 +8,19 @@
 
 void brighten_dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void displayImage(int img[][MAX_COLS], int rows, int cols);
+void loadTestImg(int img[][MAX_COLS], int* rowsPtr, int* colsPtr);
+
 
 int main(){
+	int image[MAX_ROWS][MAX_COLS];
+	int rows = 0, cols = 0;
+	int newImage[MAX_ROWS][MAX_COLS];
 
-int image[MAX_ROWS][MAX_COLS];
-int rows = 10, cols = 10;
-int newImage[MAX_ROWS][MAX_COLS];
-
-  for(int i = 0; i < rows; i++){
-      for(int j = 0; j < cols; j++){
-        if (j<5){
-              if (i<2 || i>7){
-                image[i][j] = 4;
-              }else image[i][j]= 2;
-            }else{
-          if (i<5){
-                image[i][j] = 3;
-                }else image[i][j] = 1;
-            }
-        }
-    }
-    displayImage(image, rows, cols);
-    brighten_dimImage(image, newImage, rows, cols);
-    displayImage(newImage, rows, cols);
+  loadTestImg(image, &rows, &cols);
+  displayImage(image, rows, cols);
+  
+  brighten_dimImage(image, newImage, rows, cols);
+  displayImage(newImage, rows, cols);
 
   return 0;
 }
@@ -51,6 +41,27 @@ void brighten_dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, 
             }
         }	
     }
+}
+void loadTestImg(int img[][MAX_COLS], int* rowsPtr, int* colsPtr){
+  *rowsPtr = 10;
+  *colsPtr = 10;
+  for(int i = 0; i < *rowsPtr; i++){
+    for(int j = 0; j < *colsPtr; j++){
+      if (j<5){
+        if (i<2 || i>7){
+          img[i][j] = 4;
+        }else img[i][j]= 2;
+      }else{ 
+        if (i<5){
+          img[i][j] = 3;
+        }else img[i][j] = 1;
+      }
+      if (i>3 && i<6 && j>2 && j<7){
+        img[i][j] = 0;
+      }
+    }
+  }
+  
 }
 
 void displayImage(int img[][MAX_COLS], int rows, int cols){
