@@ -18,7 +18,7 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols);
 void dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void brightenImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr);
-void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
+void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr);
 
 
 int main(){
@@ -68,7 +68,6 @@ void mainMenu(){
 //--------------------------------------------------------------------
 
 int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* colsPtr){
-  int rows = 0, cols = 0;
   printf("What is the name of the image file: ");
   scanf ("%s",fname);
 
@@ -112,6 +111,7 @@ int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* co
 
 void getCols(FILE *fp, int* colsPtr){
   char temp = 'a';
+  *colsPtr = 0;
   while (temp != '\n') {
     fscanf(fp, "%c", &temp);
     if (temp >= '0' && temp <= '4') {
@@ -211,9 +211,9 @@ void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
       saveImage(fp, newImage, rows, cols);
       break;
     case 4:
-      rotateImage_90(img, newImage, rows, cols);
-      displayImage(newImage, rows, cols, 0);
-      saveImage(fp, newImage, rows, cols);
+      rotateImage_90(img, newImage, rows, cols, &newRows, &newCols);
+      displayImage(newImage, newRows, newCols, 0);
+      saveImage(fp, newImage, newRows, newCols);
       break;
     case 0: 
       printf("\n");
@@ -290,7 +290,7 @@ void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols
 int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
   char yn; 
   char newImageFileName[FILE_NAME_MAX];
-  printf("\nWould you like to save this image? (y/n):");
+  printf("\nWould you like to save this image? (y/n): ");
   scanf(" %c", &yn);
 
   switch (yn){
@@ -320,12 +320,15 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
       return 0;
   }
 }
-void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols){
+
+//--------------------------------------------------------------------
+
+void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr){
+	*newRowsPtr = cols;
+	*newColsPtr = rows;
 	for (int i = 0; i < rows; i++){
 	    for (int j = 0; j < cols; j++){
-	      if (img[i][j] > 0){
-		newImage[i][j] = img[j][i];
+		newImage[j][rows - i - 1] = img[i][j];
 		}
 	}
-}
 }
