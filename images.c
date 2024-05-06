@@ -18,7 +18,7 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols);
 void dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void brightenImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr);
-/*void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);*/
+void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols);
 
 
 int main(){
@@ -211,8 +211,9 @@ void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
       saveImage(fp, newImage, rows, cols);
       break;
     case 4:
-      //rotate and display :)
-      //saveImage(fp, newImage, newRows, newCols);
+      rotateImage_90(img, newImage, rows, cols);
+      displayImage(newImage, rows, cols, 0);
+      saveImage(fp, newImage, rows, cols);
       break;
     case 0: 
       printf("\n");
@@ -318,4 +319,13 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
     default: printf("Invalid Input.\n");
       return 0;
   }
+}
+void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols){
+	for (int i = 0; i < rows; i++){
+	    for (int j = 0; j < cols; j++){
+	      if (img[i][j] > 0){
+		newImage[i][j] = img[j][i];
+		}
+	}
+}
 }
