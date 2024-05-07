@@ -123,11 +123,11 @@ void getCols(FILE *fp, int* colsPtr){
 //-----------------------------------------------------------------
 
 void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
-  printf("\nDisplaying image!\n");
+  printf("\nDisplaying image!\n\n");
   int midRow = rows / 2, midCol = cols / 2, extraDigit = 0;
   if (midCol > 9){extraDigit++;}
   if (midCol > 99){extraDigit++;}
-  
+
   if (tag == 1){
     printf("    ");
       for (int j = 0; j < cols; j++) {
@@ -141,7 +141,7 @@ void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
   }
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
-      
+
       if (tag == 1 && j == 0){
         if(i == 0 || i == midRow || i == rows-1){
           printf("%3d|", i+1);
@@ -165,8 +165,14 @@ void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
         break;
       }
     }
+    if(tag == 1){
+      if(i == 0 || i == midRow || i == rows-1){
+        printf("|%d", i + 1);
+      }else{printf("|");}
+    }
     printf("\n");
-  } 
+  }
+  
   if (tag == 1){
     printf("    ");
       for (int j = 0; j < cols; j++) {
@@ -184,7 +190,7 @@ void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
 
 void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
   int editMenu, newRows, newCols, newImage[MAX_ROWS][MAX_COLS];
-  
+
   printf ("***IMAGE EDITOR***\n");
   printf ("1: Crop Image\n");
   printf ("2: Dim Image\n");
@@ -276,8 +282,7 @@ void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols
   }
   *newRowsPtr = cropCoords[1] - cropCoords[0] + 1;
   *newColsPtr = cropCoords[3] - cropCoords[2] + 1;
-  printf("newRows = %d, newCols = %d", *newRowsPtr, *newColsPtr);
-  
+
   for (int i = 0; i < *newRowsPtr; i++){
     for (int j = 0; j < *newColsPtr; j++){
       newImage[i][j] = img[cropCoords[0] + i - 1][cropCoords[2] + j - 1];
@@ -324,11 +329,11 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
 //--------------------------------------------------------------------
 
 void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr){
-	*newRowsPtr = cols;
-	*newColsPtr = rows;
-	for (int i = 0; i < rows; i++){
-	    for (int j = 0; j < cols; j++){
-		newImage[j][rows - i - 1] = img[i][j];
-		}
-	}
+  *newRowsPtr = cols;
+  *newColsPtr = rows;
+  for (int i = 0; i < rows; i++){
+      for (int j = 0; j < cols; j++){
+    newImage[j][rows - i - 1] = img[i][j];
+    }
+  }
 }
