@@ -54,8 +54,6 @@ int main(){
   return 0;
 }
 
-//--------------------------------------------------------------------
-
 void mainMenu(){
   printf ("***ERINSTAGRAM***\n");
   printf ("1: Load Image\n");
@@ -64,8 +62,6 @@ void mainMenu(){
   printf ("0: EXIT\n");
   printf ("\nChoose from one of the options above: ");
 }
-
-//--------------------------------------------------------------------
 
 int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* colsPtr){
   printf("What is the name of the image file: ");
@@ -107,8 +103,6 @@ int loadImage(FILE *fp, char fname[], int img[][MAX_COLS], int* rowsPtr, int* co
     return 1;
 }
 
-//-----------------------------------------------------------------
-
 void getCols(FILE *fp, int* colsPtr){
   char temp = 'a';
   *colsPtr = 0;
@@ -119,8 +113,6 @@ void getCols(FILE *fp, int* colsPtr){
     }
   }
 }
-
-//-----------------------------------------------------------------
 
 void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
   printf("\nDisplaying image!\n\n");
@@ -186,8 +178,6 @@ void displayImage(int img[][MAX_COLS], int rows, int cols, int tag){
   }
 }
 
-//--------------------------------------------------------------------
-
 void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
   int editMenu, newRows, newCols, newImage[MAX_ROWS][MAX_COLS];
 
@@ -227,7 +217,6 @@ void editImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
   }
 }
 
-//--------------------------------------------------------------------
 void dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols){
   for (int i = 0; i < rows; i++){
     for (int j = 0; j < cols; j++){
@@ -240,7 +229,6 @@ void dimImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols)
   }
 }
 
-//--------------------------------------------------------------------
 void brightenImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols){
   for (int i = 0; i < rows; i++){
     for (int j = 0; j < cols; j++){
@@ -252,8 +240,6 @@ void brightenImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int 
     }
   }
 }
-
-//--------------------------------------------------------------------
 
 void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr){
   int cropCoords[4];
@@ -290,8 +276,6 @@ void cropImage(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols
   }
 }
 
-//--------------------------------------------------------------------
-
 int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
   char yn; 
   char newImageFileName[FILE_NAME_MAX];
@@ -325,8 +309,6 @@ int saveImage(FILE* fp, int img[][MAX_COLS], int rows, int cols){
       return 0;
   }
 }
-
-//--------------------------------------------------------------------
 
 void rotateImage_90(int img[][MAX_COLS], int newImage[][MAX_COLS], int rows, int cols, int* newRowsPtr, int* newColsPtr){
   *newRowsPtr = cols;
